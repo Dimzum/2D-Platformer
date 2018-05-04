@@ -20,25 +20,29 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
-        private void Awake()
-        {
+        Transform playerGFX;    // Reference to the player graphics
+
+        private void Awake() {
             // Setting up references.
             m_GroundCheck = transform.Find("GroundCheck");
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
+
+            playerGFX = transform.Find("PlayerGFX");
+            if (playerGFX == null) {
+                Debug.LogError("No 'Graphics' object as a child of the player");
+            }
         }
 
 
-        private void FixedUpdate()
-        {
+        private void FixedUpdate() {
             m_Grounded = false;
 
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
             // This can be done using layers instead but Sample Assets will not overwrite your project settings.
             Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-            for (int i = 0; i < colliders.Length; i++)
-            {
+            for (int i = 0; i < colliders.Length; i++) {
                 if (colliders[i].gameObject != gameObject)
                     m_Grounded = true;
             }
@@ -49,14 +53,11 @@ namespace UnityStandardAssets._2D
         }
 
 
-        public void Move(float move, bool crouch, bool jump)
-        {
+        public void Move(float move, bool crouch, bool jump) {
             // If crouching, check to see if the character can stand up
-            if (!crouch && m_Anim.GetBool("Crouch"))
-            {
+            if (!crouch && m_Anim.GetBool("Crouch")) {
                 // If the character has a ceiling preventing them from standing up, keep them crouching
-                if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
-                {
+                if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround)) {
                     crouch = true;
                 }
             }
@@ -65,8 +66,7 @@ namespace UnityStandardAssets._2D
             m_Anim.SetBool("Crouch", crouch);
 
             //only control the player if grounded or airControl is turned on
-            if (m_Grounded || m_AirControl)
-            {
+            if (m_Grounded || m_AirControl) {
                 // Reduce the speed if crouching by the crouchSpeed multiplier
                 move = (crouch ? move*m_CrouchSpeed : move);
 
@@ -77,21 +77,18 @@ namespace UnityStandardAssets._2D
                 m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
                 // If the input is moving the player right and the player is facing left...
-                if (move > 0 && !m_FacingRight)
-                {
+                if (move > 0 && !m_FacingRight) {
                     // ... flip the player.
                     Flip();
                 }
                     // Otherwise if the input is moving the player left and the player is facing right...
-                else if (move < 0 && m_FacingRight)
-                {
+                else if (move < 0 && m_FacingRight) {
                     // ... flip the player.
                     Flip();
                 }
             }
             // If the player should jump...
-            if (m_Grounded && jump && m_Anim.GetBool("Ground"))
-            {
+            if (m_Grounded && jump && m_Anim.GetBool("Ground")) {
                 // Add a vertical force to the player.
                 m_Grounded = false;
                 m_Anim.SetBool("Ground", false);
@@ -100,15 +97,14 @@ namespace UnityStandardAssets._2D
         }
 
 
-        private void Flip()
-        {
+        private void Flip() {
             // Switch the way the player is labelled as facing.
             m_FacingRight = !m_FacingRight;
 
             // Multiply the player's x local scale by -1.
-            Vector3 theScale = transform.localScale;
+            Vector3 theScale = playerGFX.localScale;
             theScale.x *= -1;
-            transform.localScale = theScale;
+            playerGFX.localScale = theScale;
         }
     }
 }
