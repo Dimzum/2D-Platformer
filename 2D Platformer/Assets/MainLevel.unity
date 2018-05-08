@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 8
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -39,6 +39,7 @@ RenderSettings:
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -54,11 +55,10 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 40
-    m_TextureWidth: 1024
-    m_TextureHeight: 1024
+    m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 234203754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PurpleMountainsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ Transform:
   m_Children:
   - {fileID: 1936692550}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &255602217
 GameObject:
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 255602220}
   - component: {fileID: 255602219}
   - component: {fileID: 255602218}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Platform02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,6 +202,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -244,7 +245,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &441515137
 GameObject:
@@ -256,7 +257,7 @@ GameObject:
   - component: {fileID: 441515140}
   - component: {fileID: 441515139}
   - component: {fileID: 441515138}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Platform03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,6 +302,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -343,8 +345,55 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &516874689
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -5.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 6.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114692448258635168, guid: 29125cca7fdf4cb4f87a5cf67488cdb2,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 83813101}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &679687776
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +402,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 679687777}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BlueMountainsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +421,7 @@ Transform:
   m_Children:
   - {fileID: 891779223}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &843173664
 GameObject:
@@ -384,7 +433,7 @@ GameObject:
   - component: {fileID: 843173667}
   - component: {fileID: 843173666}
   - component: {fileID: 843173665}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Platform04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,6 +478,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -471,7 +521,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &891493472
 GameObject:
@@ -483,7 +533,7 @@ GameObject:
   - component: {fileID: 891493475}
   - component: {fileID: 891493474}
   - component: {fileID: 891493473}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Platform01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,6 +578,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -570,7 +621,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &891779221
 GameObject:
@@ -582,7 +633,7 @@ GameObject:
   - component: {fileID: 891779223}
   - component: {fileID: 891779222}
   - component: {fileID: 891779224}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BlueMountains
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,6 +653,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -640,7 +692,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 891779221}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.7, y: 0.5, z: 0}
+  m_LocalPosition: {x: 16.7, y: -3, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 679687777}
@@ -661,6 +713,89 @@ MonoBehaviour:
   hasRightBuddy: 0
   hasLeftBuddy: 0
   reverseScale: 1
+--- !u!1 &1061087689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1061087691}
+  - component: {fileID: 1061087690}
+  m_Layer: 0
+  m_Name: A*
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1061087690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061087689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  data:
+    dataString: UEsDBBQAAAgIAACYn+vffcpsOwIAAMkEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VEtz2jAQ/iuMzmXGJBCS3lqH0B4ITGinF1+EtMYaZMmjR3gN/70r2caGTk+W9vt299uHdSZC2QqY02ZuBF9oDuTrgIQz+TIgNGIf1AmN5hFahNUlOCPYN7WVgZug0SuRa1PO+BZSbZ1Fc06lBYSMdsFboek8IAf8DEfPweeIx4dpOJ3w9JIMLnhkoByYjtsSW1rN8opJWlbA1+IEHXnSsic1TWExDSMoZ1pKYRspxB2rWOkHPYZCuaBYVkwduAWIbeGCwr7jMs8tuEaOocdXYbA7dUTyXbsiRCqp3dWaPqn0MXnyMI6C6qiLfwjDUYRzo8sfbeJREpK4QrAdSmTUul5T++bXW+Ve7anc0Y2EPwWodz032iuOoDM+uHoLD6/d9VpbWgDbdfZa6p3RV/+fTKjhEss/pFKUmwbC61rq2OqXcAeDQ/mJcuNS2IaF1qDht4VfdNvfngZ4E8Y6hJoaVRC30d4EKpnFjoVavEu1URDNjeQKFJXuuMIw7n6Cd1gv7R3yRsP/0SRvsHb971yiueMnyR200vvrqGyh9wuwxdI7KRR0ogPwjn1KtVL1gtlbMHitvckp63ltveC3e0VgxKYvzzlMxk+TDXtiw2Q8TfjmkfLp5gkeGSNx8YTCMqlc1Tqb7uDQVBdc4ZK1D8NgbmgVd50bup+LU6n7MxMq12tmANSyDtECFgxmwR+Sz7jABq3BOaHivMk5I1KzHfDsmjOLpc4OztCsi5KRSnxqFywZSeNzkZELufwFUEsDBBQAAAgIAACYn+uYszpsbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz1DM001FQSi9KLMgoBooYgjilmSkgdrRSqmGyuaVFWqqpiZlpUrJZsq6BiblBSpJxYop5klmqcXKyUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACYn+vffcpsOwIAAMkEAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACYn+uYszpsbQAAAHgAAAAJACQAAAAAAAAAAAAAAIgCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAQAMAAAAA
+    upgradeData: 
+    file_cachedStartup: {fileID: 0}
+    data_cachedStartup: 
+    cacheStartup: 0
+  showNavGraphs: 1
+  showUnwalkableNodes: 1
+  debugMode: 0
+  debugFloor: 0
+  debugRoof: 1
+  manualDebugFloorRoof: 0
+  showSearchTree: 0
+  unwalkableNodeDebugSize: 0.3
+  logPathResults: 1
+  maxNearestNodeDistance: 100
+  scanOnStartup: 1
+  fullGetNearestSearch: 0
+  prioritizeGraphs: 0
+  prioritizeGraphsLimit: 1
+  colorSettings:
+    _NodeConnection: {r: 1, g: 1, b: 1, a: 0.9}
+    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
+    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
+    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
+    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
+    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
+    _AreaColors: []
+  tagNames: []
+  heuristic: 2
+  heuristicScale: 1
+  threadCount: 1
+  maxFrameTime: 10
+  minAreaSize: 0
+  batchGraphUpdates: 0
+  graphUpdateBatchingInterval: 0.2
+  euclideanEmbedding:
+    mode: 0
+    seed: 0
+    pivotPointRoot: {fileID: 0}
+    spreadOutCount: 1
+  showGraphs: 0
+--- !u!4 &1061087691
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061087689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1259176547
 Prefab:
   m_ObjectHideFlags: 0
@@ -698,18 +833,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4145365246282784, guid: 258b7d5e6f656444e9a411a86da84ffa, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1489976155025062, guid: 258b7d5e6f656444e9a411a86da84ffa, type: 2}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
-        type: 0}
-    - target: {fileID: 1990943534796136, guid: 258b7d5e6f656444e9a411a86da84ffa, type: 2}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000,
-        type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 258b7d5e6f656444e9a411a86da84ffa, type: 2}
   m_IsPrefabParent: 0
@@ -794,7 +919,7 @@ Transform:
   m_Children:
   - {fileID: 2050738542}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1331554397
 MonoBehaviour:
@@ -847,54 +972,69 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 2
+    - serializedVersion: 3
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - serializedVersion: 2
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 2
+    - serializedVersion: 3
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 2
+    - serializedVersion: 3
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 2
+    - serializedVersion: 3
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
@@ -925,8 +1065,26 @@ Transform:
   m_Children:
   - {fileID: 2092337593}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1783546443 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1158555867212112, guid: 29125cca7fdf4cb4f87a5cf67488cdb2,
+    type: 2}
+  m_PrefabInternal: {fileID: 516874689}
+--- !u!114 &1783546444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1783546443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f28c5314ed9ccb4093293c98872b5e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    health: 100
 --- !u!1 &1936692548
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,7 +1095,7 @@ GameObject:
   - component: {fileID: 1936692550}
   - component: {fileID: 1936692549}
   - component: {fileID: 1936692551}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PurpleMountains
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,6 +1115,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -995,7 +1154,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1936692548}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: -5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 234203754}
@@ -1053,7 +1212,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4795820511973724, guid: a2d5ae92f45edfc489b4b6952f711125, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114816674222815654, guid: a2d5ae92f45edfc489b4b6952f711125,
         type: 2}
@@ -1073,7 +1232,7 @@ Prefab:
     - target: {fileID: 114046019007875616, guid: a2d5ae92f45edfc489b4b6952f711125,
         type: 2}
       propertyPath: spawnDelay
-      value: 3.1
+      value: 3.05
       objectReference: {fileID: 0}
     - target: {fileID: 114046019007875616, guid: a2d5ae92f45edfc489b4b6952f711125,
         type: 2}
@@ -1125,6 +1284,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -1186,6 +1346,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

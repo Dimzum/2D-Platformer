@@ -19,6 +19,7 @@ public class GameMaster : MonoBehaviour {
     public float spawnDelay = 2;
     public Transform spawnPrefab;
 
+    /* PLAYER */
     public IEnumerator RespawnPlayer() {
         GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(spawnDelay);
@@ -28,8 +29,13 @@ public class GameMaster : MonoBehaviour {
         Destroy(clone.gameObject, 2f);
     }
 
-    public static void KillPlayer(Player player) {
-        Destroy(player.gameObject);
+    public static void KillPlayer(Player p) {
+        Destroy(p.gameObject);
         gm.StartCoroutine(gm.RespawnPlayer());
+    }
+
+    /* ENEMY */
+    public static void KillEnemy(Enemy e) {
+        Destroy(e.gameObject);
     }
 }

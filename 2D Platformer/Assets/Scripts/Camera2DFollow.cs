@@ -39,12 +39,10 @@ namespace UnityStandardAssets._2D
 
             bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
 
-            if (updateLookAheadTarget)
-            {
+            if (updateLookAheadTarget) {
                 m_LookAheadPos = lookAheadFactor*Vector3.right*Mathf.Sign(xMoveDelta);
             }
-            else
-            {
+            else {
                 m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime*lookAheadReturnSpeed);
             }
 
