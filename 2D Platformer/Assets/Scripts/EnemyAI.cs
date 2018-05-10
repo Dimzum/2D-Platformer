@@ -83,7 +83,7 @@ public class EnemyAI : MonoBehaviour {
     }
 
     public void OnPathComplete(Path p) {
-        Debug.Log("Got a path. Error? " + p.error);
+        //Debug.Log("Got a path. Error? " + p.error);
         if (!p.error) {
             path = p;
             currentWaypoint = 0;
