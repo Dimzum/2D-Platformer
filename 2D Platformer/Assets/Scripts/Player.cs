@@ -10,13 +10,13 @@ public class Player : MonoBehaviour {
         public int maxHealth = 100;
 
         private int _currHealth;
-        public int currHealth {
+        public int CurrHealth {
             get { return _currHealth; }
             set { _currHealth = Mathf.Clamp(value, 0, maxHealth); }
         }
 
         public void Init() {
-            currHealth = maxHealth;
+            CurrHealth = maxHealth;
         }
     }
     #endregion
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
         if (statusIndicator == null) {
             Debug.LogError("No status indicator referenced on Player");
         } else {
-            statusIndicator.SetHealth(stats.currHealth, stats.maxHealth);
+            statusIndicator.SetHealth(stats.CurrHealth, stats.maxHealth);
         }
     }
 
@@ -44,13 +44,13 @@ public class Player : MonoBehaviour {
     }
 
     public void DamagePlayer(int damage) {
-        stats.currHealth -= damage;
+        stats.CurrHealth -= damage;
 
-        if (stats.currHealth <= 0) {
+        if (stats.CurrHealth <= 0) {
             //Debug.Log("KILL PLAYER");
             GameMaster.KillPlayer(this);
         }
 
-        statusIndicator.SetHealth(stats.currHealth, stats.maxHealth);
+        statusIndicator.SetHealth(stats.CurrHealth, stats.maxHealth);
     }
 }

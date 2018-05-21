@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour {
     public float updateRate = 2f;
 
     // The AI's speed per second
-    public float speed = 300f;
+    public float speed = 250f;
     public ForceMode2D fMode;
 
     [HideInInspector]
@@ -110,7 +110,7 @@ public class EnemyAI : MonoBehaviour {
                 return;
             }
 
-            Debug.Log("End of path reached.");
+            //Debug.Log("End of path reached.");
             pathIsEnded = true;
             return;
         }

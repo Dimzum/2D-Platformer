@@ -11,13 +11,13 @@ public class Enemy : MonoBehaviour {
         public int damage = 30;
 
         private int _currtHealth;
-        public int currHealth {
+        public int CurrHealth {
             get { return _currtHealth; }
             set { _currtHealth = Mathf.Clamp(value, 0, maxHealth); }
         }
 
         public void Init() {
-            currHealth = maxHealth;
+            CurrHealth = maxHealth;
         }
     }
     #endregion
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour {
         stats.Init();
 
         if (statusIndicator != null) {
-            statusIndicator.SetHealth(stats.currHealth, stats.maxHealth);
+            statusIndicator.SetHealth(stats.CurrHealth, stats.maxHealth);
         }
 
         if (deathParticles == null) {
@@ -44,15 +44,15 @@ public class Enemy : MonoBehaviour {
     }
 
     public void DamageEnemy(int damage) {
-        stats.currHealth -= damage;
+        stats.CurrHealth -= damage;
 
-        if (stats.currHealth <= 0) {
+        if (stats.CurrHealth <= 0) {
             //Debug.Log("KILL Enemy");
             GameMaster.KillEnemy(this);
         }
 
         if (statusIndicator != null) {
-            statusIndicator.SetHealth(stats.currHealth, stats.maxHealth);
+            statusIndicator.SetHealth(stats.CurrHealth, stats.maxHealth);
         }
     }
 

@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 114046019007875616}
   - component: {fileID: 82798304361703764}
   - component: {fileID: 114330898573045624}
+  - component: {fileID: 114913825028180200}
   m_Layer: 0
   m_Name: _GM
   m_TagString: GM
@@ -83,7 +84,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0b1276e675040754f83efddf13d4b1c4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5341688d09b601a42b5e25049171d6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLives: 3
   playerPrefab: {fileID: 4145365246282784, guid: 258b7d5e6f656444e9a411a86da84ffa,
     type: 2}
   spawnPoint: {fileID: 4868599642345652}
@@ -185,6 +187,7 @@ MonoBehaviour:
   spawnPrefab: {fileID: 4694058234900414, guid: e123febe253838f4f91befea05042af5,
     type: 2}
   camShake: {fileID: 114330898573045624}
+  _gameOverUI: {fileID: 0}
 --- !u!114 &114330898573045624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,3 +216,38 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   smoothing: 1
+--- !u!114 &114913825028180200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1475840319031062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04caf6d8f0ef8f9478c25a85bae62958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: Alien Invasion
+    enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+    count: 1
+    rate: 1
+  - name: Alien Invasion 2.0
+    enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+    count: 3
+    rate: 1
+  - name: Doomsday
+    enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+    count: 5
+    rate: 1.5
+  - name: Omae Wa Mou Shindeiru
+    enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+    count: 10
+    rate: 2.5
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  timeBetweenWaves: 5
+  nextWaveSpawnTime: 0
+  _state: 2

@@ -7,6 +7,12 @@ public class GameMaster : MonoBehaviour {
     #region Singleton
     public static GameMaster gm;
 
+    [SerializeField] private int maxLives = 3;
+    private static int _remainingLives;
+    public static int RemainingLives {
+        get { return _remainingLives; }
+    }
+
     private void Awake() {
         if (gm == null) {
             gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -21,10 +27,28 @@ public class GameMaster : MonoBehaviour {
 
     public CameraShake camShake;
 
+    [SerializeField] private GameObject _gameOverUI;
+
+    // Cache
+    private AudioManager audioManager;
+
     private void Start() {
         if (camShake == null) {
             Debug.LogError("No camera shake referenced in Game Master.");
         }
+
+        _remainingLives = maxLives;
+
+        // Caching
+        audioManager = AudioManager.instance;
+        if (audioManager == null) {
+            Debug.LogError("No AudioManager found in the scene");
+        }
+    }
+
+    public void EndGame() {
+        Debug.Log("GAME OVER!");
+        _gameOverUI.SetActive(true);
     }
 
     /*------------------ PLAYER ------------------*/
@@ -39,7 +63,12 @@ public class GameMaster : MonoBehaviour {
 
     public static void KillPlayer(Player p) {
         Destroy(p.gameObject);
-        gm.StartCoroutine(gm.RespawnPlayer());
+        _remainingLives -= 1;
+        if (_remainingLives <= 0) {
+            gm.EndGame();
+        } else {
+            gm.StartCoroutine(gm.RespawnPlayer());
+        }
     }
 
     /*------------------ ENEMY ------------------*/
