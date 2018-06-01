@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
-    public float fireRate = 0;
-    public int damage = 10;
+    public enum WeaponType { PISTOL, RIFLE };
+
+    public WeaponType weapon = WeaponType.PISTOL;
+
+    private WeaponStats stats;
+
     public LayerMask whatToHit;
 
     public Transform bulletTrailPrefab;
@@ -19,8 +23,13 @@ public class Weapon : MonoBehaviour {
     public float camShakeLength = 0.1f;
     CameraShake camshake;
 
+    public string weaponShootSound = "DefaultShot";
+
     private float timeToFire = 0;
     private Transform firePoint;
+
+    // Caching
+    AudioManager audioManager;
 
     private void Awake() {
         firePoint = transform.Find("FirePoint");
@@ -31,21 +40,31 @@ public class Weapon : MonoBehaviour {
     }
 
     private void Start() {
+        stats = WeaponStats.instance;
+        
+        stats.Damage = stats.baseDamage;
+        stats.FireRate = stats.baseFireRate;
+
         camshake = GameMaster.gm.GetComponent<CameraShake>();
         if (camshake == null) {
             Debug.LogError("No camera shake found on GM object.");
+        }
+
+        audioManager = AudioManager.instance;
+        if (audioManager == null) {
+            Debug.LogError("No AudioManager found in scene.");
         }
     }
 
     // Update is called once per frame
     void Update () {
-		if (fireRate == 0) {
+		if (stats.FireRate == 0) {
             if (Input.GetButtonDown("Fire1")) {
                 Shoot();
             }
         } else {
             if (Input.GetButton("Fire1") && Time.time > timeToFire) {
-                timeToFire = Time.time + 1 / fireRate;
+                timeToFire = Time.time + 1 / stats.FireRate;
                 Shoot();
             }
         }
@@ -63,7 +82,7 @@ public class Weapon : MonoBehaviour {
             Enemy enemy = hit.collider.GetComponent<Enemy>();
             if (enemy != null) {
                 //Debug.Log("We hit " + hit.collider.name + " for " + damage + " damage.");
-                enemy.DamageEnemy(damage);
+                enemy.DamageEnemy(stats.Damage);
             }
         }
 
@@ -106,7 +125,10 @@ public class Weapon : MonoBehaviour {
         clone.localScale = new Vector3(size, size, size);
         Destroy(clone.gameObject, 0.02f);
 
-        // Shake the camera
+        // Shake the camera whenever player shoots
         //camshake.Shake(camShakeAmount, camShakeLength);
+
+        //Play shoot sound
+        audioManager.PlaySound(weaponShootSound);
     }
 }

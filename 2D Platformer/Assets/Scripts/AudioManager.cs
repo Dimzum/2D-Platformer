@@ -14,17 +14,24 @@ public class Sound {
     [Range(0f, .5f)] public float randomVolume = .1f;
     [Range(0f, .5f)] public float randomPitch = .1f;
 
+    public bool loop = false;
+
     private AudioSource source;
     
     public void SetSource(AudioSource aSource) {
         source = aSource;
         source.clip = clip;
+        source.loop = loop;
     }
 
     public void Play() {
         source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f));
         source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
         source.Play();
+    }
+
+    public void Stop() {
+        source.Stop();
     }
 }
 
@@ -36,9 +43,12 @@ public class AudioManager : MonoBehaviour {
 
     private void Awake() {
         if (instance != null) {
-            Debug.LogError("More than one AudioManager in the scene.");
+            if (instance != this) {
+                Destroy(this.gameObject);
+            }
         } else {
             instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 
@@ -48,12 +58,33 @@ public class AudioManager : MonoBehaviour {
             go.transform.SetParent(this.transform);
             sounds[i].SetSource(go.AddComponent<AudioSource>());
         }
+
+        PlaySound("Music");
     }
+
+    // Used to test StopSound(string)
+    /*private void Update() {
+        if (Time.time > 5f) {
+            StopSound("Music");
+        }
+    }*/
 
     public void PlaySound(string aName) {
         for (int i = 0; i < sounds.Length; i++) {
             if (sounds[i].name == aName) {
                 sounds[i].Play();
+                return;
+            }
+        }
+
+        //No sound with aName
+        Debug.LogWarning("AudioManger: Sound not found in array: " + aName);
+    }
+
+    public void StopSound(string aName) {
+        for (int i = 0; i < sounds.Length; i++) {
+            if (sounds[i].name == aName) {
+                sounds[i].Stop();
                 return;
             }
         }

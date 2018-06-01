@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
+[RequireComponent(typeof(EnemyAI))]
 public class Enemy : MonoBehaviour {
 
     [System.Serializable]
     #region Enemy stats class
     public class EnemyStats {
         public int maxHealth = 100;
-        public int damage = 30;
+        public int damage = 20;
 
         private int _currtHealth;
         public int CurrHealth {
@@ -24,15 +26,21 @@ public class Enemy : MonoBehaviour {
 
     public EnemyStats stats = new EnemyStats();
 
-    [Header("Optional: ")] [SerializeField] private StatusIndicator statusIndicator;
-
     public Transform deathParticles;
 
     public float shakeAmount = 0.1f;
     public float shakeLength = 0.1f;
 
+    [Header("Optional: ")] [SerializeField] private StatusIndicator statusIndicator;
+
+    public string deathSoundName = "Explosion";
+
+    public int moneyDropAmount;
+
     private void Start() {
         stats.Init();
+
+        moneyDropAmount = Random.Range(10, 15);
 
         if (statusIndicator != null) {
             statusIndicator.SetHealth(stats.CurrHealth, stats.maxHealth);
@@ -41,6 +49,18 @@ public class Enemy : MonoBehaviour {
         if (deathParticles == null) {
             Debug.LogError("No death particles referenced on enemy.");
         }
+
+        GameMaster.gm.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+    }
+
+    void OnUpgradeMenuToggle(bool active) {
+        // Disable enemy's movement
+        GetComponent<EnemyAI>().enabled = !active;
+        //GetComponent<Seeker>().enabled = !active;
+    }
+
+    private void OnDestroy() {
+        GameMaster.gm.onToggleUpgradeMenu -= OnUpgradeMenuToggle;
     }
 
     public void DamageEnemy(int damage) {

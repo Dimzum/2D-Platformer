@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114692448258635168}
   - component: {fileID: 58448568837643526}
   - component: {fileID: 114260378581490702}
+  - component: {fileID: 8123674489818055380}
   m_Layer: 0
   m_Name: AlienSpaceship
   m_TagString: Enemy
@@ -148,11 +149,13 @@ MonoBehaviour:
   stats:
     maxHealth: 100
     damage: 30
-  statusIndicator: {fileID: 114534650231051324}
   deathParticles: {fileID: 4932307617047442, guid: 3f6feba7a043fc64bb7e2c045e6871dd,
     type: 2}
   shakeAmount: 0.1
   shakeLength: 0.1
+  statusIndicator: {fileID: 114534650231051324}
+  deathSoundName: Explosion
+  moneyDropAmount: 0
 --- !u!114 &114482381958498534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,8 +255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  updateRate: 2
-  speed: 1000
+  updateRate: 1
+  speed: 1350
   fMode: 0
   pathIsEnded: 0
   nextWayPointDistance: 3
@@ -439,3 +442,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 1.205}
   m_SizeDelta: {x: 75, y: 17}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1818360609 &8123674489818055380
+RotationConstraint:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1158555867212112}
+  m_Enabled: 1
+  m_Weight: 0
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 0, z: 0}
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 4579001641267674}
+    weight: 1

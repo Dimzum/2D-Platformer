@@ -5,15 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour {
 
-	public void Quit() {
+    [SerializeField] string mouseHoverSound = "ButtonHover";
+
+    [SerializeField] string buttonPressedSound = "ButtonPress";
+
+    AudioManager audioManager;
+
+    private void Start() {
+        audioManager = AudioManager.instance;
+        if (audioManager == null) {
+            Debug.LogError("No AudioManager found in the scene.");
+        }
+    }
+
+    public void Quit() {
+        audioManager.PlaySound(buttonPressedSound);
+
         Debug.Log("Exiting the Game!");
         Application.Quit();
     }
 
     // Returns the player the the main menu
     public void PlayAgain() {
+        audioManager.PlaySound(buttonPressedSound);
+
         //Application.LoadLevel(Application.loadedLevel);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(0);
+    }
+
+    public void OnMouseOver() {
+        audioManager.PlaySound(mouseHoverSound);
     }
 }
