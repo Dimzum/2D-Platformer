@@ -1,0 +1,6 @@
+- Level completion celebration
+- Level 2:
+	- moving platforms -- horizontal and veritical
+	- two types of enemies
+		- current and new
+		- increased difficulty

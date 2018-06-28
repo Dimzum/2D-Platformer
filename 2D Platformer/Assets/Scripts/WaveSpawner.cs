@@ -74,7 +74,7 @@ public class WaveSpawner : MonoBehaviour {
 
         if (_nextWave + 1 > waves.Length - 1) {
             _nextWave = 0;
-            Debug.Log("All waves complete! Looping...");
+            Debug.Log("All waves completed! Looping...");
         }
         else {
             _nextWave++;
@@ -110,7 +110,7 @@ public class WaveSpawner : MonoBehaviour {
     }
 
     void SpawnEnemy(Transform enemy) {
-        Debug.Log("Spawning enemy: " + enemy.name);
+        //Debug.Log("Spawning enemy: " + enemy.name);
 
         Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
         Instantiate(enemy, sp.position, sp.rotation);

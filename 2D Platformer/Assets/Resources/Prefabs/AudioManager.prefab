@@ -61,28 +61,28 @@ MonoBehaviour:
     loop: 0
   - name: Music
     clip: {fileID: 8300000, guid: 82c1aa658a4fb374282a278cd1d0e2fe, type: 3}
-    volume: 0.4
+    volume: 0.6
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 1
   - name: ButtonHover
     clip: {fileID: 8300000, guid: 1b38f5eac05a80546a9e706a32fc7577, type: 3}
-    volume: 0.5
+    volume: 0.6
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
     loop: 0
   - name: ButtonPress
     clip: {fileID: 8300000, guid: bb09d56eb85e8af45a961a38d8c99e67, type: 3}
-    volume: 0.4
+    volume: 0.65
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
   - name: DefaultShot
     clip: {fileID: 8300000, guid: 252e58a3ff123ce4bb29834e2203f0ba, type: 3}
-    volume: 0.7
+    volume: 0.65
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
@@ -96,28 +96,28 @@ MonoBehaviour:
     loop: 0
   - name: DeathVoice
     clip: {fileID: 8300000, guid: 7c11c8196f78fde4188d332a0b779ca5, type: 3}
-    volume: 0.6
+    volume: 0.7
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
   - name: TakeDamageSound
     clip: {fileID: 8300000, guid: 962af8c99893d85489c1eb648ea4f3b9, type: 3}
-    volume: 0.4
+    volume: 0.5
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
     loop: 0
   - name: Spawn
     clip: {fileID: 8300000, guid: b44d4a5b2631fa6408a67f2aff9b9d0c, type: 3}
-    volume: 0.6
+    volume: 0.7
     pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
   - name: GameOver
     clip: {fileID: 8300000, guid: d9499a3939e725e45bc64ac767c903a9, type: 3}
-    volume: 0.75
+    volume: 0.8
     pitch: 0.8
     randomVolume: 0
     randomPitch: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
     loop: 0
   - name: Pickup
     clip: {fileID: 8300000, guid: d27c2d648643a434fbf04ec22950b966, type: 3}
-    volume: 0.4
+    volume: 0.5
     pitch: 1
     randomVolume: 0.1
     randomPitch: 0.1
@@ -145,7 +145,7 @@ MonoBehaviour:
     loop: 0
   - name: InsufficientGold
     clip: {fileID: 8300000, guid: 3d1134d267ba59a4eba63786c2fb3811, type: 3}
-    volume: 0.35
+    volume: 0.45
     pitch: 1
     randomVolume: 0
     randomPitch: 0.05

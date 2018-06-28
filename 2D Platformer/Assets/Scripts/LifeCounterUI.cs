@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Text))]
-public class LivesCounterUI : MonoBehaviour {
+public class LifeCounterUI : MonoBehaviour {
 
-    private Text livesText;
+    [SerializeField] private Text lifeText;
 
 	// Use this for initialization
 	void Start () {
-        livesText = GetComponent<Text>();
+        //lifeText = GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        livesText.text = "LIVES: " + GameMaster.RemainingLives.ToString();
+        lifeText.text = "x " + GameMaster.NumLives.ToString();
 	}
 }

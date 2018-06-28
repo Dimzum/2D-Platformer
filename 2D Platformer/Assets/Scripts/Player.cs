@@ -5,7 +5,15 @@ using UnityStandardAssets._2D;
 
 [RequireComponent(typeof(Platformer2DUserControl))]
 public class Player : MonoBehaviour {
-    
+
+    public static Player instance;
+
+    private void Awake() {
+        if (instance == null) {
+            instance = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
+    }
+
     public int fallBoundary = -20;
 
     public string deathSoundName = "DeathVoice";
@@ -17,9 +25,14 @@ public class Player : MonoBehaviour {
 
     private PlayerStats stats;
 
+    public enum WeaponType { PISTOL, RIFLE };
+    [SerializeField] public WeaponType weapon;
+
     private void Start() {
         stats = PlayerStats.instance;
         stats.CurrHealth = stats.MaxHealth;
+
+        weapon = WeaponType.PISTOL;
 
         if (statusIndicator == null) {
             Debug.LogError("No status indicator referenced on Player");
@@ -27,7 +40,7 @@ public class Player : MonoBehaviour {
             statusIndicator.SetHealth(stats.CurrHealth, stats.MaxHealth);
         }
 
-        GameMaster.gm.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+        GameMaster.gm.onToggleShopMenu += OnShopMenuToggle;
 
         audioManager = AudioManager.instance;
         if (audioManager == null) {
@@ -48,8 +61,9 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void OnUpgradeMenuToggle(bool active) {
+    void OnShopMenuToggle(bool active) {
         GetComponent<Platformer2DUserControl>().enabled = !active; // Disable player's movement
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero; // Stops the Player from sliding
         Weapon weapon = GetComponentInChildren<Weapon>();
         if (weapon != null) {
             weapon.enabled = !active; // Disable player's weapon
@@ -57,7 +71,7 @@ public class Player : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        GameMaster.gm.onToggleUpgradeMenu -= OnUpgradeMenuToggle;
+        GameMaster.gm.onToggleShopMenu -= OnShopMenuToggle;
     }
 
     public void DamagePlayer(int damage) {

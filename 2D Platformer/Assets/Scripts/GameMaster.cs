@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour {
 
@@ -9,9 +10,10 @@ public class GameMaster : MonoBehaviour {
     public static GameMaster gm;
 
     [SerializeField] private int maxLives = 3;
-    private static int _remainingLives;
-    public static int RemainingLives {
-        get { return _remainingLives; }
+    private static int _numLives;
+    public static int NumLives {
+        get { return _numLives; }
+        set { _numLives = value; }
     }
 
     [SerializeField] private int startingGold = 35;
@@ -28,7 +30,7 @@ public class GameMaster : MonoBehaviour {
     }
     #endregion
     /*-------------------- Singleton --------------------*/
-
+    
     public Transform playerPrefab;
     public Transform spawnPoint;
     public float spawnDelay = 2;
@@ -41,12 +43,15 @@ public class GameMaster : MonoBehaviour {
     public CameraShake camShake;
 
     [SerializeField] private GameObject _gameOverUI;
-    [SerializeField] private GameObject _upgradeMenu;
+    [SerializeField] private GameObject _shopMenu;
 
     [SerializeField] private WaveSpawner waveSpawner;
 
-    public delegate void UpgradeMenuCallback(bool active);
-    public UpgradeMenuCallback onToggleUpgradeMenu;
+    public delegate void ShopMenuCallback(bool active);
+    public ShopMenuCallback onToggleShopMenu;
+    
+    [SerializeField] private GameObject inGameLifeCounter;
+    [SerializeField] private GameObject inGameGoldCounter;
 
     // Aduio
     private AudioManager audioManager; // Cache
@@ -57,7 +62,7 @@ public class GameMaster : MonoBehaviour {
             Debug.LogError("No camera shake referenced in Game Master.");
         }
 
-        _remainingLives = maxLives;
+        _numLives = maxLives;
 
         _gold = startingGold;
 
@@ -71,14 +76,17 @@ public class GameMaster : MonoBehaviour {
     private void Update() {
         // Press Esc for upgrade menu
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            ToggleUpgradeMenu();
+            ToggleShopMenu();
         }
     }
 
-    private void ToggleUpgradeMenu() {
-        _upgradeMenu.SetActive(!_upgradeMenu.activeSelf);
-        waveSpawner.enabled = !_upgradeMenu.activeSelf;
-        onToggleUpgradeMenu.Invoke(_upgradeMenu.activeSelf);
+    private void ToggleShopMenu() {
+        _shopMenu.SetActive(!_shopMenu.activeSelf);
+        waveSpawner.enabled = !_shopMenu.activeSelf;
+        onToggleShopMenu.Invoke(_shopMenu.activeSelf);
+        
+        inGameLifeCounter.SetActive(!(inGameLifeCounter.activeSelf));
+        inGameGoldCounter.SetActive(!(inGameGoldCounter.activeSelf));
     }
 
     public void EndGame() {
@@ -102,8 +110,8 @@ public class GameMaster : MonoBehaviour {
     public static void KillPlayer(Player p) {
         Destroy(p.gameObject);
 
-        _remainingLives -= 1;
-        if (_remainingLives <= 0) {
+        _numLives -= 1;
+        if (_numLives <= 0) {
             gm.EndGame();
         } else {
             gm.StartCoroutine(gm.RespawnPlayer());

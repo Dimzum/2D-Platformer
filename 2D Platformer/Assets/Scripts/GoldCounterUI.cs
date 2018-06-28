@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Text))]
-public class MoneyCounterUI : MonoBehaviour {
+public class GoldCounterUI : MonoBehaviour {
 
-    private Text moneyText;
+    [SerializeField] private Text goldText;
 
     // Use this for initialization
     void Start() {
-        moneyText = GetComponent<Text>();
+        //goldText = GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update() {
-        moneyText.text = "Gold: " + GameMaster.Gold.ToString();
+        goldText.text = "x " + GameMaster.Gold.ToString();
     }
 }

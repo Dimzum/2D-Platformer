@@ -18,7 +18,7 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4868599642345652}
+  - component: {fileID: 4957267948581262}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -57,18 +57,18 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4868599642345652}
+  - {fileID: 4957267948581262}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4868599642345652
+--- !u!4 &4957267948581262
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260244540681570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 1.5, z: 0}
+  m_LocalPosition: {x: -2.5, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4795820511973724}
@@ -89,7 +89,7 @@ MonoBehaviour:
   startingGold: 35
   playerPrefab: {fileID: 4145365246282784, guid: 258b7d5e6f656444e9a411a86da84ffa,
     type: 2}
-  spawnPoint: {fileID: 4868599642345652}
+  spawnPoint: {fileID: 4957267948581262}
   spawnDelay: 3.05
   spawnPrefab: {fileID: 4694058234900414, guid: e123febe253838f4f91befea05042af5,
     type: 2}
@@ -98,8 +98,10 @@ MonoBehaviour:
   gameOverSoundName: GameOver
   camShake: {fileID: 114330898573045624}
   _gameOverUI: {fileID: 0}
-  _upgradeMenu: {fileID: 0}
+  _shopMenu: {fileID: 0}
   waveSpawner: {fileID: 114913825028180200}
+  inGameLifeCounter: {fileID: 0}
+  inGameGoldCounter: {fileID: 0}
 --- !u!114 &114330898573045624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
-  _currHealth: 0
+  _currHealth: 100
   healthRegenRate: 2
   _velocity: 10
 --- !u!114 &114816674222815654
@@ -155,27 +157,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
+  - name: TEST
+    enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+    count: 1
+    rate: 1
   - name: Alien Invasion
     enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
-    count: 2
+    count: 3
     rate: 1
   - name: Alien Invasion 2.0
     enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
-    count: 4
-    rate: 1
-  - name: Alien Invasion 5.0
-    enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
-    count: 7
+    count: 6
     rate: 1.5
-  - name: Doomsday
+  - name: Alien Invasion 5.0
     enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
     count: 10
     rate: 2
-  - name: Omae Wa Mou Shindeiru
+  - name: Doomsday
     enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
     count: 13
-    rate: 3.5
+    rate: 2.5
+  - name: Omae Wa Mou Shindeiru
+    enemy: {fileID: 4579001641267674, guid: 29125cca7fdf4cb4f87a5cf67488cdb2, type: 2}
+    count: 15
+    rate: 4
   spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -185,7 +194,7 @@ MonoBehaviour:
   - {fileID: 0}
   timeBetweenWaves: 4
   nextWaveSpawnTime: 0
-  _state: 2
+  _state: 1
 --- !u!114 &114996900883983798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,6 +207,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 20
-  _damage: 0
+  _damage: 20
   baseFireRate: 5
-  _fireRate: 0
+  _fireRate: 5

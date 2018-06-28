@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
-    public enum WeaponType { PISTOL, RIFLE };
-
-    public WeaponType weapon = WeaponType.PISTOL;
+    public static Weapon instance;
 
     private WeaponStats stats;
 
@@ -25,6 +23,12 @@ public class Weapon : MonoBehaviour {
 
     public string weaponShootSound = "DefaultShot";
 
+    // Weapon stats
+    public int pistolBaseDamage = 20;
+    public float pistolBaseFireRate = 5;
+    public int rifleBaseDamage = 40;
+    public int rifleBaseFireRate = 10;
+
     private float timeToFire = 0;
     private Transform firePoint;
 
@@ -37,13 +41,24 @@ public class Weapon : MonoBehaviour {
         if (firePoint == null) {
             Debug.LogError("'firePoint' is null");
         }
+
+        if (instance == null) {
+            instance = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Weapon>();
+        }
     }
 
     private void Start() {
+
         stats = WeaponStats.instance;
-        
-        stats.Damage = stats.baseDamage;
-        stats.FireRate = stats.baseFireRate;
+
+        // Initializing weapon stats
+        if (Player.instance.weapon == Player.WeaponType.PISTOL) {
+            stats.Damage = pistolBaseDamage;
+            stats.FireRate = pistolBaseFireRate;
+        } else if (Player.instance.weapon == Player.WeaponType.RIFLE) {
+            stats.Damage = rifleBaseDamage;
+            stats.FireRate = rifleBaseFireRate;
+        }
 
         camshake = GameMaster.gm.GetComponent<CameraShake>();
         if (camshake == null) {

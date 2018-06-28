@@ -50,17 +50,17 @@ public class Enemy : MonoBehaviour {
             Debug.LogError("No death particles referenced on enemy.");
         }
 
-        GameMaster.gm.onToggleUpgradeMenu += OnUpgradeMenuToggle;
+        GameMaster.gm.onToggleShopMenu += OnShopMenuToggle;
     }
 
-    void OnUpgradeMenuToggle(bool active) {
+    void OnShopMenuToggle(bool active) {
         // Disable enemy's movement
         GetComponent<EnemyAI>().enabled = !active;
         //GetComponent<Seeker>().enabled = !active;
     }
 
     private void OnDestroy() {
-        GameMaster.gm.onToggleUpgradeMenu -= OnUpgradeMenuToggle;
+        GameMaster.gm.onToggleShopMenu -= OnShopMenuToggle;
     }
 
     public void DamageEnemy(int damage) {

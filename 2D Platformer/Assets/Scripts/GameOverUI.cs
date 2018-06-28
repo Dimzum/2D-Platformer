@@ -25,13 +25,18 @@ public class GameOverUI : MonoBehaviour {
         Application.Quit();
     }
 
+    public void MainMenu() {
+        audioManager.PlaySound(buttonPressedSound);
+        SceneManager.LoadScene(0);
+    }
+
     // Returns the player the the main menu
     public void PlayAgain() {
         audioManager.PlaySound(buttonPressedSound);
 
         //Application.LoadLevel(Application.loadedLevel);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);  // Loads Level_1
     }
 
     public void OnMouseOver() {
